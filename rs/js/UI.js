@@ -335,11 +335,7 @@ var mainNav = {
     back: function () {
         document.querySelector('.flex-top-form').style.display = 'block';
         document.querySelector('.flex-form').style.display = 'none';
-        document.getElementById("panel").innerHTML = null;
-        Shell.search_suggest.field_input_start.value = null;
-        Shell.search_suggest.field_input_start_two.value = null;
-        Shell.search_suggest.field_input_via.value = null;
-        Shell.search_suggest.field_input_destination.value = null;
+        Shell.search_suggest.clearFormValue();
         Shell.mapper.marker_list.clearMarkerOnMap();
 
     },

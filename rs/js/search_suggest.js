@@ -110,6 +110,14 @@ class SearchSuggest {
             });
         }
     }
+
+    clearFormValue(){
+        this.field_input_start.value = null;
+        this.field_input_start_two.value = null;
+        this.field_input_via.value = null;
+        this.field_input_destination.value = null;
+    }
+
     static sendRequest(q) {
         let position = Shell.getSelectionPosition();
         return new Promise(resolve => {

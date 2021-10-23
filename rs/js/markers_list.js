@@ -60,7 +60,9 @@ class MarkersList {
                         break;
                     default:
                         let dest_context = me.onPlaceContext("Direction to here", marker);
-                        e.items.push(dest_context);
+                        //let clear_router = me.OnRemoveRoute("Remove route", marker);
+                        let context_list = [dest_context];
+                        e.items.push(...context_list);
                         break;
                 }
                 await new Promise(r => setTimeout(r, 10));
@@ -162,6 +164,15 @@ class MarkersList {
             label: label,
             callback: function () {
                 me.router.setDestPoint(marker);
+            }
+        })
+    }
+    OnRemoveRoute() {
+        let me = this;
+        return new H.util.ContextItem({
+            label: label,
+            callback: function () {
+                me.router.removeRouteLine();
 
             }
         })
@@ -296,6 +307,6 @@ class MarkersList {
         this.markers = {};
         this.router.clearRouteLine();
     }
-    
+
 }
 

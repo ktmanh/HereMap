@@ -23,7 +23,7 @@ class Router {
         this.start_point = start_point;
         Shell.search_suggest.field_input_start_two.value = this.start_point.getMakerLabel();
         if (!this.dest_point) {
-            //mainNav.showDirectionBox();
+            Shell.search_suggest.field_input_destination.value = null;
             Shell.search_suggest.field_input_destination.focus();
             return;
         }
@@ -32,7 +32,6 @@ class Router {
 
     //Set diem trung gian
     setViaPoint(via_point) {
-        console.log('setVIA');
         this.via_point = via_point;
         Shell.search_suggest.field_input_via.value = this.via_point.getMakerLabel();
         mainNav.openVia();
@@ -44,6 +43,8 @@ class Router {
         this.dest_point = dest_point;
         Shell.search_suggest.field_input_destination.value = this.dest_point.getMakerLabel();
         if (!this.start_point) {
+            console.log('here');
+            Shell.search_suggest.field_input_start_two.value = null;
             mainNav.showDirectionBox();
             Shell.search_suggest.field_input_start_two.focus();
             return;
@@ -67,6 +68,7 @@ class Router {
     removeMarker(marker) {
         if (this.start_point == marker) {
             this.start_point = null;
+            Shell.search_suggest.field_input_start_two.value = null;
         } else if (this.via_point == marker) {
             this.via_point = null;
             document.querySelector('#viaForm').style.display = 'none';
@@ -74,6 +76,7 @@ class Router {
             document.querySelector('.addVia').style.display = 'flex';
         } else if (this.dest_point == marker) {
             this.dest_point = null;
+            Shell.search_suggest.field_input_destination.value = null;
         } else {
             return;
         }
@@ -184,8 +187,13 @@ class Router {
                 this.mapper.map.removeObject(rl);
             }
         }
+        this.clearInstructions();
         this.routeLines = [];
     }
+    clearInstructions() {
+        document.getElementById("panel").innerHTML = null;
+    }
+
     clearRouteLine() {
         this.start_point = null;
         this.via_point = null;
