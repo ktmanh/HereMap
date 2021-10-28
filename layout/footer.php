@@ -30,12 +30,22 @@
         Shell.search_place.limit = document.querySelector("#limitFinding").value;
         Shell.search_place.radius = (document.querySelector("#myRange").value) * 1000;
         Shell.search_place.searchingPlace();
+        removeUserChoice(element);
     }
     //thay doi phuong tien chi duong
     function transportMode(element) {
         let transport_mode = element.getAttribute('data-type');
         Shell.mapper.router.transport_mode = transport_mode || 'car';
         Shell.mapper.router.showDirection();
+    }
+
+    function removeUserChoice(element) {
+        let param_place = '.pickButton[onclick="nearMe(this)"]';
+        let list_place = document.querySelectorAll(param_place);
+        for (let place of list_place) {
+            place.classList.remove("userchoice");
+        }
+        element.classList.add("userchoice");
     }
 </script>
 </body>

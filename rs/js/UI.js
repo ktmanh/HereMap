@@ -1,7 +1,7 @@
 //khai bao cac UI can thiet va xu ly
 //define variables
-var range, categoriesName, categoriesType, limit = 10;
-var categoryOptions = [{
+let range, categoryOptions, transportOptions, routingOptions, dropDownOptions, trans_mode;
+categoryOptions = [{
     "name": "hotel",
     "type": "500-5000",
     "image": pathImage + "hotels-off.png"
@@ -22,7 +22,7 @@ var categoryOptions = [{
     "type": "700-7600",
     "image": pathImage + "gas-off.png"
 }];
-var transportOptions = [{
+transportOptions = [{
     "name": "Car",
     "type": "car",
     "image": pathImage + "transportmode/car.svg"
@@ -39,7 +39,7 @@ var transportOptions = [{
     "type": "truck",
     "image": pathImage + "transportmode/truck.svg"
 }];
-var routingOptions = [{
+routingOptions = [{
     "name": "Fastest",
     "type": "fast",
     "image": pathImage + "routingmode/fastest.svg"
@@ -48,7 +48,7 @@ var routingOptions = [{
     "type": "short",
     "image": pathImage + "routingmode/shortest.svg"
 }];
-var dropDownOptions = {
+dropDownOptions = {
     "Eat_And_Drink": [{
         "name": "Restaurant",
         "type": "100-1000"
@@ -203,14 +203,14 @@ var dropDownOptions = {
         "type": "900-9400"
     }]
 };
-var domCategory = document.querySelector('.flex-categories');
-var domTransport = document.querySelector('.flex-transports');
-var domRoute = document.querySelector('.flex-route');
-var menuList = document.querySelector('.menuBtn');
-var extendMenu = document.querySelector('.extendMenu');
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-var formContainer = document.querySelector('.form-container');
+let domCategory = document.querySelector('.flex-categories');
+let domTransport = document.querySelector('.flex-transports');
+let domRoute = document.querySelector('.flex-route');
+let menuList = document.querySelector('.menuBtn');
+let extendMenu = document.querySelector('.extendMenu');
+let slider = document.getElementById("myRange");
+let output = document.getElementById("demo");
+let formContainer = document.querySelector('.form-container');
 output.innerHTML = slider.value;
 //add categories
 addCategory(categoryOptions, domCategory, 'nearMe');
@@ -377,7 +377,17 @@ var mainNav = {
     },
     showRouteLine() {
         Shell.mapper.router.showDirection();
+    },
+    fillColorTransportMode(mode) {
+        let param_mode = '.pickButton[data-type=' + '"' + mode + '"]';
+        if (mode != trans_mode) {
+            let list_trans = document.querySelectorAll(".flex-transports .pickButton");
+            for (let trans of list_trans) {
+                trans.classList.remove("userchoice");
+            }
+        }
+        document.querySelector(param_mode).classList.add("userchoice");
+        trans_mode = mode;
     }
-
 }
 

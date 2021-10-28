@@ -476,6 +476,7 @@ body{
 .pickButton:hover{
     background: #d8d8d8;
 }
+
 .cssBubble{
     top: -30px;
 }
@@ -522,7 +523,7 @@ body{
     -moz-background-clip: padding;
     border-radius: 4px;
     background-clip: padding-box;
-    background: #d5d5d5;
+    background: #efefef;
     color: #666;
     font-size: 14px;
     margin: 0 0 3px;
@@ -534,9 +535,11 @@ body{
     cursor: pointer;
 }
 .dropLi:hover{
-    background-color: #c3c3c3;
+    background-color: #d8d8d8;
 }
-
+.userchoice{
+    background: #d8d8d8;
+}
 .showMore{
     display: inline-block;
     box-sizing: border-box;

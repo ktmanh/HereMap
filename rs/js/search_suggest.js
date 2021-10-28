@@ -87,9 +87,10 @@ class SearchSuggest {
                         coords: item.position,
                         content: title
                     }
+                    me.mapper.marker_list.removeMarkerByType(type);
                     let marker = me.mapper.marker_list.createMarker(obj, type, type.toString());
                     me.mapper.map.setCenter(marker.getPos());
-                    
+
                     if (flag) {
                         me.field_input_start_two.value = title;
                     }
@@ -111,7 +112,7 @@ class SearchSuggest {
         }
     }
 
-    clearFormValue(){
+    clearFormValue() {
         this.field_input_start.value = null;
         this.field_input_start_two.value = null;
         this.field_input_via.value = null;

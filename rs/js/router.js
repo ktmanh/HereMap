@@ -108,6 +108,7 @@ class Router {
     }
     successCalculate(result) {
         if (result.routes.length) {
+            mainNav.fillColorTransportMode(this.transport_mode);
             this.createRouteLine(result.routes[0]);
             this.addInstructions(result.routes[0]);
         }
